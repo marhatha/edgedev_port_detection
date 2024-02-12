@@ -21,9 +21,9 @@ transform = transforms.Compose([
 ])
 
 # Load COCO dataset
-train_dataset = CocoDetection(root='/Users/pmarhath/Downloads/Llama/python/chatgpt/ZiggoPortStatus-2/train', annFile='/Users/pmarhath/Downloads/Llama/python/chatgpt/ZiggoPortStatus-2/train/_annotations.coco.json', transform=transform)
+train_dataset = CocoDetection(root='./dataset/ZiggoPortStatus-2/train', annFile='./dataset/ZiggoPortStatus-2/train/_annotations.coco.json', transform=transform)
 
-test_dataset = CocoDetection(root='/Users/pmarhath/Downloads/Llama/python/chatgpt/ZiggoPortStatus-2/test', annFile='/Users/pmarhath/Downloads/Llama/python/chatgpt/ZiggoPortStatus-2/test/_annotations.coco.json', transform=transform)
+test_dataset = CocoDetection(root='./dataset/ZiggoPortStatus-2/test', annFile='./dataset/ZiggoPortStatus-2/test/_annotations.coco.json', transform=transform)
 
 # Print one image
 image, annotations = train_dataset[0]  # Change the index as needed
@@ -34,7 +34,7 @@ max_labels = max(len(ann) for _, ann in train_dataset)
 print(f"\nmax_labels is {max_labels}")
 
 # Load category information
-with open('/Users/pmarhath/Downloads/Llama/python/chatgpt/ZiggoPortStatus-2/train/_annotations.coco.json', 'r') as f:
+with open('./dataset/ZiggoPortStatus-2/train/_annotations.coco.json', 'r') as f:
     coco_info = json.load(f)
 
 # Get the class names
