@@ -7,6 +7,12 @@ from torchvision.datasets import CocoDetection
 from torch.utils.data import DataLoader
 import numpy as np
 import torch.nn.functional as F
+import sys
+from torch.utils.tensorboard import SummaryWriter
+
+# Tensor board  default `log_dir` is "runs" - we'll be more specific here
+writer = SummaryWriter('runs/mnist1')
+
 
 # Hyperparameters
 num_epochs = 10
@@ -84,6 +90,11 @@ class CNN(nn.Module):
 
 # Instantiate the model
 model = CNN()
+
+# Tensorboard graph generation
+writer.add_graph(model, torch.rand([1, 3, 224, 224]))
+#writer.close()
+#sys.exit()
 
 # Define loss function and optimizer
 criterion = nn.MultiLabelSoftMarginLoss()
