@@ -96,6 +96,10 @@ writer.add_graph(model, torch.rand([1, 3, 224, 224]))
 #writer.close()
 #sys.exit()
 
+# print weights and bias for each layers
+for name, param in model.named_parameters():
+    writer.add_histogram(name, param, bins='auto')
+
 # Define loss function and optimizer
 criterion = nn.MultiLabelSoftMarginLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
