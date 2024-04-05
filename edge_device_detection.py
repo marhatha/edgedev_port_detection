@@ -18,8 +18,8 @@ import torch.nn.functional as F
 
 # Constants and Hyperparameters
 
-JSON_FILE = '/Users/pmarhath/Downloads/Llama/python/chatgpt/project-12-at-2024-03-19-21-53-73daddc8/result.json'
-ROOT_DIR = '/Users/pmarhath/Downloads/Llama/python/chatgpt/project-12-at-2024-03-19-21-53-73daddc8/'
+JSON_FILE = '/.dataset/homerouter/result.json'
+ROOT_DIR = '/.dataset/homerouter/'
 NUM_EPOCHS = 20
 BATCH_SIZE = 4
 LEARNING_RATE = 0.001
