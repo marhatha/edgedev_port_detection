@@ -1,5 +1,7 @@
 import json
 
+JSON_FILE = './dataset/homerouter/result.json'
+
 def get_categories_from_json(json_file):
     """
     Extract category names from a COCO format JSON file.
@@ -18,3 +20,8 @@ def get_categories_from_json(json_file):
     sorted_categories = [categories[cat_id] for cat_id in sorted(categories)]
     
     return sorted_categories
+
+print(f"\nStep1\n")
+categories = get_categories_from_json(JSON_FILE)
+print(categories)
+
