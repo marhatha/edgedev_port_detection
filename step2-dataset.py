@@ -12,6 +12,7 @@ subprocess.run(["pip","install","scikit-learn"])
 subprocess.run(["pip","install","scikit-image"])
 subprocess.run(["pip","install","tensorboard"])
 
+
 import json
 import os
 import numpy as np
@@ -30,11 +31,14 @@ from pycocotools.coco import COCO
 from skimage import io
 import torch.nn.functional as F
 
+
+
+
 # Constants and Hyperparameters
 
 JSON_FILE = './dataset/homerouter/result.json'
 ROOT_DIR = './dataset/homerouter/'
-NUM_EPOCHS = 20
+NUM_EPOCHS = 5
 BATCH_SIZE = 4
 LEARNING_RATE = 0.001
 WEIGHT_DECAY = 1e-4
