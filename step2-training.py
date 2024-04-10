@@ -11,6 +11,8 @@ subprocess.run(["pip","install","pycocotools"])
 subprocess.run(["pip","install","scikit-learn"])
 subprocess.run(["pip","install","scikit-image"])
 subprocess.run(["pip","install","tensorboard"])
+subprocess.run(["pip", "install", "transformers"])
+
 
 
 import json
@@ -32,13 +34,11 @@ from skimage import io
 import torch.nn.functional as F
 
 
-
-
 # Constants and Hyperparameters
 
 JSON_FILE = './dataset/homerouter/result.json'
 ROOT_DIR = './dataset/homerouter/'
-NUM_EPOCHS = 5
+NUM_EPOCHS = 1
 BATCH_SIZE = 4
 LEARNING_RATE = 0.001
 WEIGHT_DECAY = 1e-4
@@ -339,6 +339,6 @@ print(f'Recall: {recall:.2f}')
 print(f'F1 Score: {f1:.2f}')
 
 # Saving the model
-save_model(model, "models/v1.pth")
+save_model(model, "./dataset/homerouter/v2.pth")
 
 print('Finished Training')
