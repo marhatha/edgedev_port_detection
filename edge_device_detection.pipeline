@@ -1,0 +1,237 @@
+{
+  "doc_type": "pipeline",
+  "version": "3.0",
+  "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "id": "elyra-auto-generated-pipeline",
+  "primary_pipeline": "primary",
+  "pipelines": [
+    {
+      "id": "primary",
+      "nodes": [
+        {
+          "id": "1c738c26-5866-4f0b-86cd-6c856811e824",
+          "type": "execution_node",
+          "op": "execute-python-node",
+          "app_data": {
+            "component_parameters": {
+              "dependencies": [
+                "dataset/homerouter/result.json"
+              ],
+              "include_subdirectories": false,
+              "outputs": [],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "step1-datacuration.py",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:d4f79f0d7596cf8058b58f1c317e698781a97bfbd3b6d13daa80390742ff6eac"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "step1-datacuration.py",
+              "image": "/notebook/pipeline-project/rohit-pipeline-test/static/elyra/python.svg",
+              "x_pos": 88,
+              "y_pos": 82,
+              "description": "Run Python script"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "f392369a-0979-4c53-906c-86f72cefecce",
+          "type": "execution_node",
+          "op": "execute-python-node",
+          "app_data": {
+            "component_parameters": {
+              "dependencies": [
+                "dataset/homerouter/result.json",
+                "dataset/homerouter/images/*.jpg",
+                "dataset/homerouter/*.pth"
+              ],
+              "include_subdirectories": true,
+              "outputs": [
+                "dataset/homerouter/v2.pth",
+                "dataset/homerouter/result.json",
+                "dataset/homerouter/images/fd3074c7-IMG_4844.jpg"
+              ],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "step2-training.py",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:d4f79f0d7596cf8058b58f1c317e698781a97bfbd3b6d13daa80390742ff6eac"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "step2-training.py",
+              "image": "/notebook/pipeline-project/rohit-pipeline-test/static/elyra/python.svg",
+              "x_pos": 354,
+              "y_pos": 209,
+              "description": "Run Python script"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "f3de993e-3d8b-4ed2-afbf-a6b58ae34e0e",
+                  "node_id_ref": "1c738c26-5866-4f0b-86cd-6c856811e824",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "78a4aa4c-0494-4f4a-ad5b-ebe860a95859",
+          "type": "execution_node",
+          "op": "execute-python-node",
+          "app_data": {
+            "component_parameters": {
+              "dependencies": [
+                "dataset/homerouter/result.json",
+                "dataset/homerouter/v2.pth",
+                "dataset/homerouter/images/fd3074c7-IMG_4844.jpg"
+              ],
+              "include_subdirectories": false,
+              "outputs": [
+                "dataset/homerouter/model_v1.onnx"
+              ],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "step3-validation_inference.py",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:b0045dc104587a6c6d5689db83c2fd4f4eac5c863969eafd7fae418316b69df1"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "step3-validation_inference.py",
+              "image": "/notebook/pipeline-project/rohit-pipeline-test/static/elyra/python.svg",
+              "x_pos": 657,
+              "y_pos": 331,
+              "description": "Run Python script"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "1ec4f586-7704-4cc5-88e5-2ab99f8c0346",
+                  "node_id_ref": "f392369a-0979-4c53-906c-86f72cefecce",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "app_data": {
+        "ui_data": {
+          "comments": []
+        },
+        "version": 8,
+        "runtime_type": "KUBEFLOW_PIPELINES",
+        "properties": {
+          "name": "edge_device_detection",
+          "runtime": "Data Science Pipelines",
+          "pipeline_defaults": {
+            "kubernetes_pod_annotations": [],
+            "kubernetes_tolerations": [],
+            "kubernetes_pod_labels": [],
+            "mounted_volumes": [],
+            "kubernetes_shared_mem_size": {},
+            "env_vars": [],
+            "kubernetes_secrets": []
+          }
+        }
+      },
+      "runtime_ref": ""
+    }
+  ],
+  "schemas": []
+}
