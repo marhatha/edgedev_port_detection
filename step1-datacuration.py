@@ -24,4 +24,3 @@ def get_categories_from_json(json_file):
 print(f"\nStep1\n")
 categories = get_categories_from_json(JSON_FILE)
 print(categories)
-
